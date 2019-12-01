@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from djano.contrib.urlresolvers import reverse_lazy
-from djano.views.generic import CreateView
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
 from . import forms
 
 class SignUp(CreateView):
