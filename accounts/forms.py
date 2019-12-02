@@ -6,6 +6,8 @@ class UserCreationForm(UserCreationForm):
         fields = ('username','email','password1','password2')
         model = get_user_model()
 
+# Here we declare that the our class inherits from the real UserCreationForm class
+
     def __init__(self,*args,**kwargs):
         super().__init__(*args,**kwargs)
         self.fields['username'].label="Display Name"
