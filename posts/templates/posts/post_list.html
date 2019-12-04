@@ -1,1 +1,33 @@
-post_list.html
+{% extends "posts/post_base.html" %}
+{% block prepost %}
+  <div class="col-md-4">
+    {% if request.user.is_authenticated %}
+    <div class="card" style="width: 18rem;">
+        <div class="card-header">
+          your groups
+        </div>
+        <ul class="list-group list-group-flush">
+          {% for memeber_group in get_user_groups %}
+            <li class="list-group-item"> <a href="{% url 'groups:single' slug=mamber_group.group.slug %}">{{memeber_group.group.name}}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+    <div class="card" style="width: 18rem;">
+        <div class="card-header">
+          All groups
+        </div>
+        <ul class="list-group list-group-flush">
+          {% for other_group in get_other_groups %}
+            <li class="list-group-item"> <a href="{% url 'groups:single' slug=other_group.slug %}">{{other_group.name}}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+  </div>
+{% endblock %}
+
+{% block post_content %}
+  {% for post in post_list %}
+    {% include "posts/_post.html"}
+  {% endfor %}
+{% endblock %}
