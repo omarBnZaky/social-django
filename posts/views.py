@@ -42,6 +42,7 @@ class PostDetail(SelectRelatedMixin,generic.DetailView):
         return queryset.filter(user__username__iexact=self.kwargs.get('username'))
 
 class CreatePost(LoginRequiredMixin,SelectRelatedMixin,generic.CreateView):
+    select_related = ('user','group')
     fields = ('message','group')
     model = models.Post
 

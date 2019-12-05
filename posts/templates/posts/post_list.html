@@ -16,12 +16,12 @@
         </ul>
       </div>
     {% endif %}
-    <div class="card" style="width: 18rem;">
+    <!-- <div class="card" style="width: 18rem;">
         <div class="card-header">
           All groups
         </div>
         <ul class="list-group list-group-flush">
-          {% for other_group in groups.all %}
+          {% for other_group in get_other_groups %}
             <li class="list-group-item">
               <a href="{% url 'groups:single' slug=other_group.slug %}">
                 {{other_groups.name}}
@@ -29,7 +29,7 @@
             </li>
           {% endfor %}
         </ul>
-      </div>
+      </div> -->
   </div>
 {% endblock %}
 
