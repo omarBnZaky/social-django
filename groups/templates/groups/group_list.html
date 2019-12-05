@@ -19,18 +19,20 @@
 
     </div>
 {% endblock %}
-{% block postgroup %}
+{% block pregroup %}
  <div class = "col-md-8">
     <div class="list-group">
       {% for group in object_list %}
-      <div class="list-group-item" href="{% url 'group:single' slug=group.slug %}">
-     <h3 class="title list-group-item-heading">{{group.name}}</h3>
+      <div class="list-group-item">
+        <a href="{% url 'groups:single' slug=group.slug %}">
+     <h3 class="title list-group-item-heading">{{group.name}}</h3></a>
+
       <div class="list-group-item-text container-fluid">
         {{group.description_html|safe}}
         <div class="row">
             <div class="col-md-4">
-              <span class="badge badge-success">{{group.memebers.count}}</span>
-                member{{group.memebers.count.pluralize}}
+              <span class="badge badge-success">{{group.members.count}}</span>
+                member{{group.members.count.pluralize}}
             </div>
             <div class="col-md-4">
               <span class="badge badge-success">{{group.posts.count}}</span>

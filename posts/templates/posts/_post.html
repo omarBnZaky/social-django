@@ -1,22 +1,14 @@
-<div class="media">
-  <div class="media-body">
-  <a href="{%url 'posts:for_user' username=post.user.username %}">
-  <h5 class="mt-0">
-    <strong>{{post.user.username}}</strong>
-  </h5>
-</a>
-      {{post.message_html|safe}}
-  </div>
-</div>
+<br>
 
 <div class="jumbotron">
   <a href="{%url 'posts:for_user' username=post.user.username %}">
     <h3 class="display-4"><strong>{{post.user.username}}</strong></h3>
   </a>
 
-  {% if request.user.is_authenticated %}
 
   <p class="lead">{{post.message_html|safe}}</p>
+  {% if request.user.is_authenticated  and request.user.username == post.user.username  %}
+
       <p class="lead">
         <a class="btn btn-delete" href="{%url 'posts:delete' pk=post.pk %}" role="button">
           <i class="fa fa-trash" aria-hidden="true"></i>
