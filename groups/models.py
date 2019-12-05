@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 from django.urls import reverse
-import misaka 
+import misaka
 from django.contrib.auth import get_user_model
 from django import template
 
@@ -13,7 +13,7 @@ class Group(models.Model):
 	slug = models.SlugField(allow_unicode=True,unique=True)#slug field create URl
 	description = models.TextField(blank=True,default='')
 	description_html = models.TextField(editable=False,blank=True,default='')
-	members =  models.ManyTpManyField(User,through='GroupMember')
+	members =  models.ManyToManyField(User,through='GroupMember')
 
 	def __str__(self):
 		return self.name
@@ -28,7 +28,7 @@ class Group(models.Model):
 
 	class Meta:
 		ordering = ['name']
-			
+
 
 class GroupMember(models.Model):
 	"""docstring for GroupMember"""
@@ -41,6 +41,3 @@ class GroupMember(models.Model):
 
 	class Meta:
 		unique_together= ('group','user')
-		
-			
-		
