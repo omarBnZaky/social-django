@@ -43,8 +43,13 @@ class PostDetail(SelectRelatedMixin,generic.DetailView):
 
 class CreatePost(LoginRequiredMixin,SelectRelatedMixin,generic.CreateView):
     select_related = ('user','group')
-    fields = ('message','group')
-    model = models.Post
+    template_name ='posts/post_form.html'
+    form_class = forms.CreatePostForm
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
 
     def form_valid(self,form):
         self.object = form.save(commit=False)
