@@ -5,6 +5,8 @@
     <h3 class="display-4"><strong>{{post.user.username}}</strong></h3>
   </a>
 
+    <img src="/{{ post.image}}" height="50px">
+
 
   <p class="lead">{{post.message_html|safe}}</p>
   {% if request.user.is_authenticated  and request.user.username == post.user.username  %}
@@ -17,3 +19,5 @@
   {% endif %}
 
 </div>
+
+

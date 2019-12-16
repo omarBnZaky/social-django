@@ -1,7 +1,7 @@
 {% extends "posts/post_base.html" %}
 {% load bootstrap4 %}
 {% block post_content %}
-  <form id = 'postForm' action="{% url 'posts:create' %}" method="post">
+  <form id = 'postForm' action="{% url 'posts:create' %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
 {% bootstrap_form form  %}
     <input type="submit" class="btn btn-primary" value="Post">

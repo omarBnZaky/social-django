@@ -9,7 +9,7 @@ User = get_user_model()
 class CreatePostForm(forms.ModelForm):
         class Meta:
             model = Post
-            fields = ('message', 'group')
+            fields = ('message', 'group','image')
 
         def __init__(self, *args, **kwargs):
             # self.fields['user'] = User.id
