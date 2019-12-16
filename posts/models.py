@@ -5,14 +5,31 @@ import misaka
 from django.contrib.auth import get_user_model
 from django import template
 from groups.models import Group
+from uuid import uuid4
+import os
+
 User = get_user_model()
+
+def path_and_rename(instance, filename):
+    upload_to = 'posts'
+    ext = filename.split('.')[-1]
+    # get filename
+    if instance.pk:
+        filename = '{}.{}'.format(instance.pk, ext)
+    else:
+        # set filename as random string
+        filename = '{}.{}'.format(uuid4().hex, ext)
+    # return the whole path to the file
+    return os.path.join(upload_to, filename)
+
 
 class Post(models.Model):
 	 user = models.ForeignKey(User,related_name='posts',on_delete=models.CASCADE)
 	 created_at = models.DateTimeField(auto_now=True)
 	 message = models.TextField()
 	 message_html = models.TextField(editable=False)
-	 group = models.ForeignKey(Group,related_name='posts',null=True,blank=True,on_delete=models.CASCADE)
+	 image = models.ImageField(upload_to=path_and_rename, null=True,blank=True)
+	 group = models.ForeignKey(Group,related_name='posts',null=True,blank=False,on_delete=models.CASCADE)
 
 	 def __str__(self):
 	 	return self.message
@@ -27,5 +44,3 @@ class Post(models.Model):
 
 	 class Meta:
 		 ordering = ['-created_at']
-
-		 
