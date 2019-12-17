@@ -71,5 +71,5 @@ class DeletePost(LoginRequiredMixin,SelectRelatedMixin,generic.DeleteView):
         return super().delete(*args,**kwargs)
 
 class UpdatePost(LoginRequiredMixin,generic.UpdateView):
-    fields = ('message', 'group','image')
     model = models.Post
+    fields = ['message', 'group','image']
