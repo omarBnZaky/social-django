@@ -16,9 +16,14 @@
   {% if request.user.is_authenticated  and request.user.username == post.user.username  %}
 
       <p class="lead">
-        <a class="btn btn-delete" href="{%url 'posts:delete' pk=post.pk %}" role="button">
+        <a class="btn btn-danger" href="{%url 'posts:delete' pk=post.pk %}" role="button">
           <i class="fa fa-trash" aria-hidden="true"></i>
         </a>
+
+        <a class="btn btn-success" href="{%url 'posts:update' pk=post.pk %}" role="button">
+          <i class="fa fa-edit" aria-hidden="true"></i>
+        </a>
+
       </p>
   {% endif %}
 

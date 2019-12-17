@@ -69,3 +69,7 @@ class DeletePost(LoginRequiredMixin,SelectRelatedMixin,generic.DeleteView):
     def delete(self,*args,**kwargs):
         messages.success(self.request,"Post Deleted")
         return super().delete(*args,**kwargs)
+
+class UpdatePost(LoginRequiredMixin,generic.UpdateView):
+    fields = ('message', 'group','image')
+    model = models.Post

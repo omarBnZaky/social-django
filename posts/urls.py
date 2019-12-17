@@ -11,7 +11,8 @@ urlpatterns = [
 	path('new/',views.CreatePost.as_view(),name='create'),
 	path('by/(?P<username>[-\w]+)/',views.UserPosts.as_view(),name='for_user'),
 	path('by/(?P<username>[-\w]+)/(?P<pk>\d+)/',views.PostDetail.as_view(),name='single'),
-	path('delete/(?P<pk>\d+)/',views.DeletePost.as_view(),name='delete')
+	path('delete/(?P<pk>\d+)/',views.DeletePost.as_view(),name='delete'),
+	path('update/(?P<pk>\d+)/',views.UpdatePost.as_view(),name='update')
 
 ]
 
